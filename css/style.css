@@ -10,9 +10,20 @@
     background-color: hotpink;
     color: #fff;
 }
-/* .search-bg{
-    background-color: rgb(206, 205, 205);
-} */
+
 .search-bg{
-    background-color: pink;
+    background-color: rgb(253, 205, 213);
+}
+#spinner{
+    color:hotpink;
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: larger;
+    /* background-color: pink; */
+}
+.img-margin{
+    margin-top: 80px;
 }
