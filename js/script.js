@@ -28,18 +28,12 @@ const loadPhone=()=>{
     
  
   }
-
- 
-
  
 // fetch url :
 const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
 fetch(url)
 .then(res => res.json())
 .then(data => displayResult(data.data.slice(0,20)))
-
-
-
 
 }
 

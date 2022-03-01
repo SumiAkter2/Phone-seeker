@@ -1,19 +1,21 @@
-
+/* h1 color setting */
 .head-bg{
     color: hotpink;
 }
+/* Input color: */
 .input-bg{
     background-color:pink ;  
 }
-
+/* btn color setting */
 .btn-bg{
     background-color: hotpink;
     color: #fff;
 }
-
+/* search */
 .search-bg{
     background-color: rgb(253, 205, 213);
 }
+/* spinner */
 #spinner{
     color:hotpink;
     display: none;
@@ -24,9 +26,11 @@
     font-size: larger;
     /* background-color: pink; */
 }
-.img-margin{
+/* Phone-details */
+ .img-margin{
     margin-top: 80px;
-}
+} 
+/* error  */
 .error-handle{
     margin-top: 80px;
 }
