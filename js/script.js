@@ -4,7 +4,7 @@ const loadPhone=()=>{
 const searchInput = document.getElementById('search-id');
 const searchText = searchInput.value ;
 searchInput.value = ' ';
-console.log(searchText);
+ console.log(searchText);
 // fetch url for search result:
 const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
 fetch(url)
@@ -15,8 +15,9 @@ fetch(url)
 // display result:
 const displayResult = phones=>{
     const searchResult = document.getElementById('search-result');
-    phones.forEach(phone=>{
-        console.log(phone);
+     searchResult.textContent='';
+    phones?.forEach(phone=>{
+         console.log(phone);
         const div= document.createElement('div');
         div.classList.add('col');
         div.innerHTML=`
