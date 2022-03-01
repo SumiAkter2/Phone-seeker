@@ -60,7 +60,7 @@ const displayResult =phones=>{
         div.classList.add('col');
         div.innerHTML= `
         <div class= "card p-4  h-100">
-           <img width="200" src="${phone.image}" class="card-img-top img-fluid " alt="...">
+           <img width="200" src="${phone.image}" class="card-img-top img-fluid img-thumbnail" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <p class="card-text">${phone.brand}</p>
@@ -95,7 +95,7 @@ const displayResult =phones=>{
  div.innerHTML=`
         <div class="row g-0 ps-4 rounded">
          <div class="col-md-4 ">
-              <img  src="${phone.image}" class=" img-margin img-fluid card-img-top" alt="...">
+              <img  src="${phone.image}" class=" img-margin img-thumbnail img-fluid card-img-top" alt="...">
         </div>
      <div class="col-md-8">
       <div class="card-body">
