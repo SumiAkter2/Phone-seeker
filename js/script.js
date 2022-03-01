@@ -9,24 +9,37 @@ const toggleSpinner= displayStyle => {
 const toggleDetailResult= displayStyle => {
   document.getElementById('detail-result').style.display=displayStyle;
 }
+// error massege:
 
+const errorMessage = document.getElementById('error-message').style.display='none';
 // onclick button
 const loadPhone=()=>{
   const searchInput = document.getElementById('search-id');
+ //display spinner:
+ toggleSpinner('block');
+ toggleDetailResult('none');
+ 
+   const searchText  = searchInput.value;
+   searchInput.value = '';
+ 
+  if(searchText==''){
+    
+    const errorMessage = document.getElementById('error-message').style.display='none';
+    
+ 
+  }
 
+ 
 
-  //display spinner:
-toggleSpinner('block');
-toggleDetailResult('none');
-
-  const searchText  = searchInput.value;
-  searchInput.value = '';
-
+ 
 // fetch url :
 const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
 fetch(url)
 .then(res => res.json())
 .then(data => displayResult(data.data.slice(0,20)))
+
+
+
 
 }
 
@@ -36,15 +49,18 @@ fetch(url)
 const displayResult =phones=>{
  
     const searchResult = document.getElementById('search-result');
+    if(phones.length == 0){
+      const errorMessage = document.getElementById('error-message').style.display='block';
+
+    }
       searchResult.textContent='';
      
    phones?.forEach(phone=>{
          console.log(phone);
         const div= document.createElement('div');
-        if(phone.length == 0){
-          console.log('sorry')
-        }
-        
+      
+        const errorMessage = document.getElementById('error-message').style.display='none';
+
         div.classList.add('col');
         div.innerHTML= `
         <div class= "card p-4  h-100">
@@ -52,7 +68,7 @@ const displayResult =phones=>{
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <p class="card-text">${phone.brand}</p>
-                <button onclick="loadDetails('${phone.slug}')" type="button" class="btn btn-bg btn-primary fw-normal">Show Details</button>
+                <button onclick="loadDetails('${phone.slug}')" type="button" class="btn btn-bg btn-primary  fw-normal">Show Details</button>
             </div>
          
         </div>
@@ -95,7 +111,7 @@ const displayResult =phones=>{
            <p ><span class="fw-bold">Memory: </span> ${phone.mainFeatures.memory}</p>
            <p class="card-text "> <span class="fw-bold">Sensor:</span> ${phone.mainFeatures.sensors}</p>
            <h4>Others:</h4>
-          <p> <span class="fw-bold">Bluetooth: </span>${phone.others ? phone.others.Bluetooth: 'no'}, <span class="fw-bold">Radio:</span>${phone.others ? phone.others.Radio: 'Not available'}</p>
+          <p> <span class="fw-bold">Bluetooth: </span>${phone.others ? phone.others.Bluetooth: 'Not available'}, <span class="fw-bold">Radio:</span>${phone.others ? phone.others.Radio: 'Not available'}</p>
       </div>
     </div>
   </div>
