@@ -48,7 +48,7 @@ const displayResult =phones=>{
         div.classList.add('col');
         div.innerHTML= `
         <div class= "card p-4  h-100">
-           <img width="200" src="${phone.image}" class="card-img-top img-fluid" alt="...">
+           <img width="200" src="${phone.image}" class="card-img-top img-fluid " alt="...">
             <div class="card-body">
                 <h5 class="card-title">${phone.phone_name}</h5>
                 <p class="card-text">${phone.brand}</p>
@@ -63,8 +63,8 @@ const displayResult =phones=>{
     toggleDetailResult('none');
 }
 
-//
-
+/////////////////////////////////////////
+//details check:
  const loadDetails= phoneId=>{
  const url =`https://openapi.programming-hero.com/api/phone/${phoneId}`
  fetch(url)
@@ -72,7 +72,7 @@ const displayResult =phones=>{
  .then(data=>displayDetailResult(data.data));
 
 }
-
+// show detail results :
  const displayDetailResult=phone=>{
    console.log(phone);
    const searchResult=document.getElementById('detail-result');
@@ -100,6 +100,7 @@ const displayResult =phones=>{
     </div>
   </div>
  `;
+ // taggle:
  toggleDetailResult('block');
  searchResult.appendChild(div);
  }
