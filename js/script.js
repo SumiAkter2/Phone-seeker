@@ -6,28 +6,29 @@ const toggleSpinner= displayStyle => {
   document.getElementById('spinner').style.display=displayStyle;
 }
 
-//  const toggleSearchResult= displayStyle => {
-//    document.getElementById('search-result').style.display=displayStyle;
-//  }
- //Onclick button setup and search input value show:
+const toggleDetailResult= displayStyle => {
+  document.getElementById('detail-result').style.display=displayStyle;
+}
+
+// onclick button
 const loadPhone=()=>{
-const searchInput = document.getElementById('search-id');
-//display spinner:
+  const searchInput = document.getElementById('search-id');
+
+
+  //display spinner:
 toggleSpinner('block');
-//  toggleSearchResult('none');
+toggleDetailResult('none');
 
+  const searchText  = searchInput.value;
+  searchInput.value = '';
 
-const searchText = searchInput.value ;
-searchInput.value = ' ';
- 
+// fetch url :
+const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
+fetch(url)
+.then(res => res.json())
+.then(data => displayResult(data.data.slice(0,20)))
 
- // fetch url for search result:
-    const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-     fetch(url)
-    .then(res=>res.json())
-    .then(data=>displayResult(data.data.slice(0,20)));
-   
-    }
+}
 
 
    ///////////////////////////////////////////////////// 
@@ -36,11 +37,13 @@ const displayResult =phones=>{
  
     const searchResult = document.getElementById('search-result');
       searchResult.textContent='';
-      
+     
    phones?.forEach(phone=>{
          console.log(phone);
         const div= document.createElement('div');
-
+        if(phone.length == 0){
+          console.log('sorry')
+        }
         
         div.classList.add('col');
         div.innerHTML= `
@@ -56,8 +59,8 @@ const displayResult =phones=>{
         `;
         searchResult.appendChild(div);
     }); 
-    toggleSpinner('none')
-     
+    toggleSpinner('none');
+    toggleDetailResult('none');
 }
 
 //
@@ -83,20 +86,20 @@ const displayResult =phones=>{
      <div class="col-md-8">
       <div class="card-body">
            <h3>${phone.name}</h3>
-            <p class="fs-6 card-text">Release Date: ${phone.releaseDate ? phone.releaseDate: 'Not available'}</p>
-            <p >Id: ${phone.slug}</p>
+            <p class="fs-6 card-text"><span class="fw-bold">Release Date: </span> ${phone.releaseDate ? phone.releaseDate: 'Not available'}</p>
+            <p ><span class="fw-bold">Id: </span> ${phone.slug}</p>
             <h4>Main-freature:</h4>
-            <p > Storage: ${phone.mainFeatures.storage}</p>
-            <p >Display-size: ${phone.mainFeatures.displaySize}  </p>
-            <p >Chipset: ${phone.mainFeatures.chipSet}</p>
-           <p >Memory: ${phone.mainFeatures.memory}</p>
-           <p class="card-text ">Sensor: ${phone.mainFeatures.sensors}</p>
+            <p > <span class="fw-bold">Storage:</span> ${phone.mainFeatures.storage}</p>
+            <p ><span class="fw-bold">Display-size:</span> ${phone.mainFeatures.displaySize}  </p>
+            <p > <span class="fw-bold">Chipset:</span> ${phone.mainFeatures.chipSet}</p>
+           <p ><span class="fw-bold">Memory: </span> ${phone.mainFeatures.memory}</p>
+           <p class="card-text "> <span class="fw-bold">Sensor:</span> ${phone.mainFeatures.sensors}</p>
            <h4>Others:</h4>
-          <p> bluetooth: ${phone.others ? phone.others.Bluetooth: 'no'}, Radio:${phone.others ? phone.others.Radio: 'Not available'}</p>
+          <p> <span class="fw-bold">Bluetooth: </span>${phone.others ? phone.others.Bluetooth: 'no'}, <span class="fw-bold">Radio:</span>${phone.others ? phone.others.Radio: 'Not available'}</p>
       </div>
     </div>
   </div>
  `;
-
+ toggleDetailResult('block');
  searchResult.appendChild(div);
  }
